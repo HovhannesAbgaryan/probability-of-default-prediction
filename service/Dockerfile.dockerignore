@@ -1,0 +1,9 @@
+# Build context is the repository root: send only what the image needs.
+*
+!pyproject.toml
+!src/pd_model/**
+!service/requirements.txt
+!service/app/**
+!service/artifacts/**
+**/__pycache__
+**/*.pyc

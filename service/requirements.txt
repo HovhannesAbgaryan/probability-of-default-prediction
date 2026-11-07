@@ -1,0 +1,9 @@
+# Runtime dependencies of the PD scoring service.
+# The model stack (scikit-learn, pandas, numpy, joblib, all pinned to the training versions) comes
+# from the pd-model package at the repository root, which is also needed to unpickle the preprocessor:
+#   pip install ..            (local)   |   see Dockerfile (image)
+fastapi==0.162.0
+uvicorn[standard]==0.54.0
+pydantic==2.14.3
+pydantic-settings==2.16.2
+prometheus-client==0.26.0

@@ -1,0 +1,120 @@
+{
+  "schema_version": 2,
+  "model_name": "retail_pd_application",
+  "model_version": "1.1.0",
+  "model_type": "logistic_regression",
+  "source_candidate": "B_logreg_parsimonious",
+  "created": "2026-11-07",
+  "target": "default",
+  "input_features": [
+    "client_history_in_bank",
+    "age",
+    "income",
+    "employment_years",
+    "loan_amount",
+    "interest_rate",
+    "num_loans",
+    "credit_utilization",
+    "past_due_30",
+    "past_due_60",
+    "past_due_90",
+    "past_default",
+    "dti",
+    "region_risk"
+  ],
+  "model_features": [
+    "credit_utilization",
+    "past_due_30",
+    "past_due_60",
+    "past_due_90",
+    "past_default",
+    "dti",
+    "region_risk_1",
+    "region_risk_2"
+  ],
+  "model_source_features": [
+    "credit_utilization",
+    "dti",
+    "past_default",
+    "past_due_30",
+    "past_due_60",
+    "past_due_90",
+    "region_risk"
+  ],
+  "feature_means_train": {
+    "credit_utilization": 2.682298827494378e-16,
+    "past_due_30": 8.12048840868686e-18,
+    "past_due_60": 3.045183153257572e-18,
+    "past_due_90": -6.394884621840901e-17,
+    "past_default": 1.8271098919545432e-17,
+    "dti": 1.8778629445088363e-17,
+    "region_risk_1": 0.2900714285714286,
+    "region_risk_2": 0.104
+  },
+  "income_cap": 30000.0,
+  "dti_winsor_cap": 2.788457396817476,
+  "score_scaling": {
+    "pdo": 20,
+    "base_score": 600,
+    "base_odds": 50
+  },
+  "master_scale": [
+    {
+      "grade": "A",
+      "pd_upper": 0.05
+    },
+    {
+      "grade": "B",
+      "pd_upper": 0.08
+    },
+    {
+      "grade": "C",
+      "pd_upper": 0.12
+    },
+    {
+      "grade": "D",
+      "pd_upper": 0.18
+    },
+    {
+      "grade": "E",
+      "pd_upper": 0.25
+    },
+    {
+      "grade": "F",
+      "pd_upper": 0.4
+    },
+    {
+      "grade": "G",
+      "pd_upper": 1.0
+    }
+  ],
+  "files": {
+    "preprocessor": {
+      "file": "preprocessor.joblib",
+      "sha256": "6ba568d2de6f25c81c244ffa267ecf55265e34c11045faebabf4172386f5f0a9"
+    },
+    "model": {
+      "file": "model.joblib",
+      "sha256": "2be8829f1049b1d2c7bd19c60a34d785ae6af7d4c8cabcb3d8b7211d97f21e42"
+    }
+  },
+  "versions": {
+    "scikit-learn": "1.9.1",
+    "pd-model": "1.1.0"
+  },
+  "validation": {
+    "test_gini": 0.4183,
+    "test_auc": 0.7091,
+    "test_ks": 0.314,
+    "test_mean_pd": 0.1569,
+    "test_observed_dr": 0.1573,
+    "hosmer_lemeshow_p": 0.438,
+    "status": "conditionally_approved",
+    "conditions": [
+      "confirm default / DPD definitions with data owner",
+      "production feed must not contain recovery_flag_after_90d",
+      "out-of-time validation on latest vintage",
+      "recalibrate intercept to long-run default rate"
+    ]
+  }
+}

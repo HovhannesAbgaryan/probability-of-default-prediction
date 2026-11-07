@@ -1,0 +1,2 @@
+# Kept for tooling that expects a requirements file; the package metadata lives in pyproject.toml.
+-e .[dev]

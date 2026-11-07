@@ -1,0 +1,12 @@
+{
+  "rows": 20000,
+  "dropped_leaky": ["recovery_flag_after_90d"],
+  "loans_divided_by_10": 80,
+  "incomes_reconstructed": 700,
+  "inconsistent_records": 2281,
+  "max_identity_error": 2.336816962156263e-09,
+  "train_rows": 14000,
+  "test_rows": 6000,
+  "train_default_rate": 0.15728571428571428,
+  "test_default_rate": 0.15733333333333333
+}

@@ -1,0 +1,69 @@
+{
+  "selected": "B_logreg_parsimonious",
+  "test_rows": 6000,
+  "replication": {
+    "max_abs_pd_diff": 0.0005110586898475766,
+    "mean_abs_pd_diff": 2.4342646457218843e-05,
+    "gini_dev": 0.4182826076753914,
+    "gini_validator": 0.4182867980315381,
+    "auc_dev": 0.7091413038376957,
+    "auc_validator": 0.7091433990157691
+  },
+  "discrimination": {
+    "gini": 0.4182826076753914,
+    "gini_ci": [
+      0.38029388799072394,
+      0.4576594301021579
+    ],
+    "auc": 0.7091413038376957,
+    "auc_ci": [
+      0.6901469439953619,
+      0.728829715051079
+    ],
+    "ks": 0.3139649485089036,
+    "ks_ci": [
+      0.2861997161318888,
+      0.35260329082180675
+    ]
+  },
+  "calibration": {
+    "mean_pd": 0.15690759915979763,
+    "observed_dr": 0.15733333333333333,
+    "defaults": 944,
+    "expected_defaults": 941.4455949587857,
+    "citl_z": 0.09623592710032684,
+    "citl_p": 0.9233331975229182,
+    "hosmer_lemeshow": 7.954012016522651,
+    "hosmer_lemeshow_p": 0.4379752451928969,
+    "grades_underestimating": 0,
+    "Brier": 0.11899854852957469,
+    "LogLoss": 0.3924780890638726
+  },
+  "score_psi": 0.0015896868602501791,
+  "challenger": {
+    "challenger": "D_lgbm_monotone",
+    "gini_challenger": 0.41526555124973186,
+    "gini_selected": 0.4182826076753914,
+    "delta_gini_mean": -0.0028875964756330764,
+    "delta_gini_ci": [
+      -0.010424416255117424,
+      0.004792640661627422
+    ],
+    "auc_challenger": 0.7076327756248659,
+    "auc_selected": 0.7091413038376957,
+    "delta_auc_mean": -0.0014437982378165382,
+    "delta_auc_ci": [
+      -0.005212208127558712,
+      0.002396320330813711
+    ],
+    "spearman_pd": 0.9740815632597343
+  },
+  "expected_loss": {
+    "expected_loss": 6669295.027913851,
+    "realised_loss": 6642667.276942685,
+    "ratio": 1.0040085932142941
+  },
+  "segments_underestimated_p05": [
+    "inconsistent_record = 1"
+  ]
+}

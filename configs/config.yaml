@@ -1,0 +1,96 @@
+# Single source of configuration for cleaning, training, validation and export.
+# Paths are relative to the project root.
+
+seed: 42
+target: default
+
+paths:
+  raw_data: data/raw/data.pkl
+  processed_dir: data/processed
+  models_dir: models
+  reports_dir: reports
+  service_artifacts_dir: service/artifacts
+
+cleaning:
+  leaky_columns: [recovery_flag_after_90d]
+  block_boundary: 13000        # index restarts here: file = 2 concatenated blocks (EDA §1.1)
+  income_cap: 30000            # income is censored at this value (EDA §5)
+  test_size: 0.30
+
+preprocessing:
+  age_placeholder: 99          # "unknown" code -> NaN -> imputed (EDA §5)
+  income_cap: 30000
+  winsorize: {dti: 0.995}      # upper quantile learned on train
+  # Every numeric column gets a median imputer, every categorical one a most-frequent imputer,
+  # so a missing value in ANY feature at scoring time is handled.
+  numeric:
+    - client_history_in_bank
+    - age
+    - income
+    - employment_years
+    - loan_amount
+    - interest_rate
+    - num_loans
+    - credit_utilization
+    - past_due_30
+    - past_due_60
+    - past_due_90
+    - past_default
+    - dti
+    - income_capped            # engineered
+    - total_past_due           # engineered
+    - any_past_due             # engineered
+  categorical:
+    - region_risk              # codes 0/1/2, one-hot encoded (unequal risk steps, EDA §9.1)
+
+training:
+  cv_folds: 5
+  equivalence_gini: 0.01       # models within this CV Gini of the best are "practically equivalent"
+  # Source features of the parsimonious logistic regression (candidate B, selection in notebook 02).
+  parsimonious:
+    [past_default, past_due_30, past_due_60, past_due_90, dti, region_risk, credit_utilization]
+  # Engineered features are left out of the WoE scorecard (redundant -> unstable coefficients).
+  woe_exclude: [total_past_due, any_past_due]
+  monotone:                    # +1 risk rises with the feature, -1 falls, absent = unconstrained
+    income: -1
+    income_capped: -1
+    loan_amount: 1
+    dti: 1
+    credit_utilization: 1
+    past_due_30: 1
+    past_due_60: 1
+    past_due_90: 1
+    total_past_due: 1
+    any_past_due: 1
+    past_default: 1
+    region_risk: 1
+  lgbm_grid: {num_leaves: [4, 8, 16], min_child_samples: [100, 300], n_estimators: [200, 400]}
+  xgb_grid: {max_depth: [2, 3, 4], min_child_weight: [5, 20], n_estimators: [200, 400]}
+  rf_grid: {min_samples_leaf: [25, 100, 300], max_depth: [8, null]}   # null = unlimited depth
+  complexity:                  # tie-breaker: lower = simpler / easier to govern
+    B_logreg_parsimonious: 1
+    C_woe_scorecard: 2
+    A_logreg_all: 3
+    D_lgbm_monotone: 4
+    F_xgb_monotone: 4
+    E_lgbm_free: 5
+    G_xgb_free: 5
+    H_random_forest: 5
+
+scorecard:
+  pdo: 20
+  base_score: 600
+  base_odds: 50
+  master_scale:                # upper PD bound per grade
+    - {grade: A, pd_upper: 0.05}
+    - {grade: B, pd_upper: 0.08}
+    - {grade: C, pd_upper: 0.12}
+    - {grade: D, pd_upper: 0.18}
+    - {grade: E, pd_upper: 0.25}
+    - {grade: F, pd_upper: 0.40}
+    - {grade: G, pd_upper: 1.0}
+
+validation:
+  n_bootstrap: 1000
+  n_grades: 10
+  lgd: 0.45

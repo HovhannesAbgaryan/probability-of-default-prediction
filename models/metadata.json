@@ -1,0 +1,291 @@
+{
+  "selected": "B_logreg_parsimonious",
+  "challenger": "D_lgbm_monotone",
+  "input_features": [
+    "client_history_in_bank",
+    "age",
+    "income",
+    "employment_years",
+    "loan_amount",
+    "interest_rate",
+    "num_loans",
+    "credit_utilization",
+    "past_due_30",
+    "past_due_60",
+    "past_due_90",
+    "past_default",
+    "dti",
+    "region_risk"
+  ],
+  "preprocessed_features": [
+    "client_history_in_bank",
+    "age",
+    "income",
+    "employment_years",
+    "loan_amount",
+    "interest_rate",
+    "num_loans",
+    "credit_utilization",
+    "past_due_30",
+    "past_due_60",
+    "past_due_90",
+    "past_default",
+    "dti",
+    "income_capped",
+    "total_past_due",
+    "any_past_due",
+    "missingindicator_age",
+    "missingindicator_credit_utilization",
+    "region_risk_1",
+    "region_risk_2"
+  ],
+  "model_features": [
+    "credit_utilization",
+    "past_due_30",
+    "past_due_60",
+    "past_due_90",
+    "past_default",
+    "dti",
+    "region_risk_1",
+    "region_risk_2"
+  ],
+  "model_source_features": [
+    "credit_utilization",
+    "dti",
+    "past_default",
+    "past_due_30",
+    "past_due_60",
+    "past_due_90",
+    "region_risk"
+  ],
+  "preprocessor_params": {
+    "winsor_caps": {
+      "dti": 2.788457396817476
+    },
+    "numeric_impute_median": {
+      "client_history_in_bank": 30.0,
+      "age": 38.145256938543994,
+      "income": 30000.0,
+      "employment_years": 5.9867606697653795,
+      "loan_amount": 9921.832734097768,
+      "interest_rate": 0.12008769405623229,
+      "num_loans": 3.0,
+      "credit_utilization": 0.3220223736334423,
+      "past_due_30": 0.0,
+      "past_due_60": 0.0,
+      "past_due_90": 0.0,
+      "past_default": 0.0,
+      "dti": 0.3816324452370139,
+      "income_capped": 1.0,
+      "total_past_due": 0.0,
+      "any_past_due": 0.0
+    },
+    "categorical_impute_mode": {
+      "region_risk": "0"
+    },
+    "categories": {
+      "region_risk": [
+        "0",
+        "1",
+        "2"
+      ]
+    },
+    "scaler_mean": {
+      "client_history_in_bank": 29.915142857142857,
+      "age": 38.56261552738405,
+      "income": 26570.244801708643,
+      "employment_years": 6.111608151544012,
+      "loan_amount": 12651.27689542898,
+      "interest_rate": 0.11970886431290402,
+      "num_loans": 3.0067142857142857,
+      "credit_utilization": 0.3394996849911049,
+      "past_due_30": 0.4017857142857143,
+      "past_due_60": 0.20164285714285715,
+      "past_due_90": 0.047285714285714285,
+      "past_default": 0.10335714285714286,
+      "dti": 0.510329700533857,
+      "income_capped": 0.6255714285714286,
+      "total_past_due": 0.6507142857142857,
+      "any_past_due": 0.48192857142857143,
+      "missingindicator_age": 0.006285714285714286,
+      "missingindicator_credit_utilization": 0.0007142857142857143
+    },
+    "scaler_scale": {
+      "client_history_in_bank": 17.027983669146934,
+      "age": 11.15337789964378,
+      "income": 5679.072477234551,
+      "employment_years": 3.753139772366224,
+      "loan_amount": 9814.731401076751,
+      "interest_rate": 0.02969787614694573,
+      "num_loans": 1.744120098607704,
+      "credit_utilization": 0.17929032982703852,
+      "past_due_30": 0.6313791795485078,
+      "past_due_60": 0.44926624418407546,
+      "past_due_90": 0.21690960216229266,
+      "past_default": 0.30442477540034585,
+      "dti": 0.432317700114462,
+      "income_capped": 0.4839750162214271,
+      "total_past_due": 0.7992850759604242,
+      "any_past_due": 0.4996733167474403,
+      "missingindicator_age": 0.07903293036217658,
+      "missingindicator_credit_utilization": 0.026716577441807207
+    },
+    "output_features": [
+      "client_history_in_bank",
+      "age",
+      "income",
+      "employment_years",
+      "loan_amount",
+      "interest_rate",
+      "num_loans",
+      "credit_utilization",
+      "past_due_30",
+      "past_due_60",
+      "past_due_90",
+      "past_default",
+      "dti",
+      "income_capped",
+      "total_past_due",
+      "any_past_due",
+      "missingindicator_age",
+      "missingindicator_credit_utilization",
+      "region_risk_1",
+      "region_risk_2"
+    ]
+  },
+  "cv_comparison": {
+    "A_logreg_all": {
+      "CV Gini": 0.4413798075,
+      "CV AUC": 0.7206899038,
+      "CV Gini std": 0.0276963138,
+      "CV AUC std": 0.0138481569,
+      "CV KS": 0.3381538414,
+      "CV Brier": 0.117629194,
+      "Train Gini": 0.4475944574,
+      "Train AUC": 0.7237972287,
+      "Overfit gap (Gini)": 0.0062146499,
+      "Overfit gap (AUC)": 0.003107325
+    },
+    "B_logreg_parsimonious": {
+      "CV Gini": 0.4405501679,
+      "CV AUC": 0.720275084,
+      "CV Gini std": 0.0314268292,
+      "CV AUC std": 0.0157134146,
+      "CV KS": 0.336190839,
+      "CV Brier": 0.1175944427,
+      "Train Gini": 0.4419827769,
+      "Train AUC": 0.7209913884,
+      "Overfit gap (Gini)": 0.0014326089,
+      "Overfit gap (AUC)": 0.0007163045
+    },
+    "D_lgbm_monotone": {
+      "CV Gini": 0.4353700597,
+      "CV AUC": 0.7176850298,
+      "CV Gini std": 0.0218806421,
+      "CV AUC std": 0.010940321,
+      "CV KS": 0.332149189,
+      "CV Brier": 0.1187698317,
+      "Train Gini": 0.4614456875,
+      "Train AUC": 0.7307228437,
+      "Overfit gap (Gini)": 0.0260756278,
+      "Overfit gap (AUC)": 0.0130378139
+    },
+    "F_xgb_monotone": {
+      "CV Gini": 0.4350788434,
+      "CV AUC": 0.7175394217,
+      "CV Gini std": 0.0217507974,
+      "CV AUC std": 0.0108753987,
+      "CV KS": 0.3306839229,
+      "CV Brier": 0.1178491816,
+      "Train Gini": 0.4830968091,
+      "Train AUC": 0.7415484046,
+      "Overfit gap (Gini)": 0.0480179657,
+      "Overfit gap (AUC)": 0.0240089829
+    },
+    "E_lgbm_free": {
+      "CV Gini": 0.4347253909,
+      "CV AUC": 0.7173626955,
+      "CV Gini std": 0.0202428509,
+      "CV AUC std": 0.0101214255,
+      "CV KS": 0.3299560042,
+      "CV Brier": 0.1186008274,
+      "Train Gini": 0.4672812875,
+      "Train AUC": 0.7336406438,
+      "Overfit gap (Gini)": 0.0325558966,
+      "Overfit gap (AUC)": 0.0162779483
+    },
+    "G_xgb_free": {
+      "CV Gini": 0.4335177123,
+      "CV AUC": 0.7167588561,
+      "CV Gini std": 0.022697475,
+      "CV AUC std": 0.0113487375,
+      "CV KS": 0.3332418589,
+      "CV Brier": 0.1183036268,
+      "Train Gini": 0.4839017235,
+      "Train AUC": 0.7419508617,
+      "Overfit gap (Gini)": 0.0503840112,
+      "Overfit gap (AUC)": 0.0251920056
+    },
+    "H_random_forest": {
+      "CV Gini": 0.4221628292,
+      "CV AUC": 0.7110814146,
+      "CV Gini std": 0.0143995586,
+      "CV AUC std": 0.0071997793,
+      "CV KS": 0.3268093853,
+      "CV Brier": 0.1212663168,
+      "Train Gini": 0.4898808561,
+      "Train AUC": 0.744940428,
+      "Overfit gap (Gini)": 0.0677180269,
+      "Overfit gap (AUC)": 0.0338590135
+    },
+    "C_woe_scorecard": {
+      "CV Gini": 0.4161714018,
+      "CV AUC": 0.7080857009,
+      "CV Gini std": 0.0220161406,
+      "CV AUC std": 0.0110080703,
+      "CV KS": 0.324747779,
+      "CV Brier": 0.1201679952,
+      "Train Gini": 0.4230365304,
+      "Train AUC": 0.7115182652,
+      "Overfit gap (Gini)": 0.0068651286,
+      "Overfit gap (AUC)": 0.0034325643
+    }
+  },
+  "best_params": {
+    "D_lgbm_monotone": {
+      "min_child_samples": 300,
+      "n_estimators": 200,
+      "num_leaves": 4
+    },
+    "E_lgbm_free": {
+      "min_child_samples": 100,
+      "n_estimators": 200,
+      "num_leaves": 4
+    },
+    "F_xgb_monotone": {
+      "max_depth": 2,
+      "min_child_weight": 5,
+      "n_estimators": 400
+    },
+    "G_xgb_free": {
+      "max_depth": 2,
+      "min_child_weight": 20,
+      "n_estimators": 400
+    },
+    "H_random_forest": {
+      "max_depth": 8,
+      "min_samples_leaf": 100
+    }
+  },
+  "versions": {
+    "pd-model": "1.1.0",
+    "scikit-learn": "1.9.1",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "joblib": "1.6.0"
+  },
+  "sha256": {
+    "preprocessor": "6ba568d2de6f25c81c244ffa267ecf55265e34c11045faebabf4172386f5f0a9",
+    "model": "2be8829f1049b1d2c7bd19c60a34d785ae6af7d4c8cabcb3d8b7211d97f21e42"
+  }
+}
